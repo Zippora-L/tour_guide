@@ -6,7 +6,7 @@ class CreateTours < ActiveRecord::Migration[6.0]
       t.integer :limit_of_people
       t.decimal :price
       t.time :starting_time
-      t.interval :duration
+      t.integer :duration
       t.string :status
       t.string :destination
 

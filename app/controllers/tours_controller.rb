@@ -1,16 +1,24 @@
 class ToursController < ApplicationController
+  before_action :set_tour, only: [:show, :edit]
+
   def index
     @tours = Tour.all
   end
 
   def show
-    set_tour
+  end
+
+  def new
+    @tour = Tour.new
+  end
+
+  def edit
   end
 
   def create
     tour = Tour.new(tour_params)
     tour.save
-    # redirect_to tours_path
+    redirect_to tours_path
   end
 
   private
