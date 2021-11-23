@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'tours/index'
   get 'tours/show'
   get 'tours/create'
