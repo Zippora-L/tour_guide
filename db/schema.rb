@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_11_23_151629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tours", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "limit_of_people"
+    t.decimal "price"
+    t.time "starting_time"
+    t.interval "duration"
+    t.string "status"
+    t.string "destination"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end

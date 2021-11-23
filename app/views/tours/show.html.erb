@@ -1,0 +1,20 @@
+<%# <h1>Tours#show</h1>
+<p>Find me in app/views/tours/show.html.erb</p> %>
+<h1>
+  <%= @tour.title %>
+</h1>
+
+<p>
+  <%= @tour.description %>
+</p>
+
+<ul>
+  <li><%= @tour.limit_of_people%></li>
+  <li><%= @tour.price%></li>
+  <li><%= @tour.starting_time%></li>
+  <li><%= @tour.duration%></li>
+  <li><%= @tour.status%></li>
+  <li><%= @tour.destination%></li>
+</ul>
+
+<%= link_to 'Back', tours_path %> |
