@@ -9,12 +9,12 @@
 </p>
 
 <ul>
-  <li><%= @tour.limit_of_people%></li>
-  <li><%= @tour.price%></li>
-  <li><%= @tour.starting_time%></li>
-  <li><%= @tour.duration%></li>
-  <li><%= @tour.status%></li>
-  <li><%= @tour.destination%></li>
+  <li>Limit of <%= @tour.limit_of_people%> people</li>
+  <li>$ <%= @tour.price%></li>
+  <li>Every day at <%= @tour.starting_time%>h</li>
+  <li>Duration of <%= @tour.duration%> hours</li>
+  <!--- <li><%= @tour.status%></li> --->
+  <li>Meeting at <%= @tour.destination%></li>
 </ul>
 
 <h2>Bookings:</h2>
