@@ -1,0 +1,32 @@
+<h1>User profile</h1>
+
+
+<%= current_user.email%>
+<% if current_user.tour_guide %>
+<% @tours.each do |tour|%>
+<div class="card-trip">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= tour.title%></h2>
+      <p><%= tour.description %></p>
+    </div>
+    <h2 class="card-trip-pricing"><%= tour.price %></h2>
+    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+  </div>
+</div>
+<%end%>
+<% else %>
+<% @bookings.each do |booking|%>
+<div class="card-trip">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= booking.tour.title%></h2>
+    </div>
+    <h2 class="card-trip-pricing"><%= booking.status%></h2>
+    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+  </div>
+</div>
+<%end%>
+<% end %>
