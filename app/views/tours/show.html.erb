@@ -17,4 +17,11 @@
   <li><%= @tour.destination%></li>
 </ul>
 
+<h2>Bookings:</h2>
+<ul>
+  <% @tour.bookings.each do |booking| %>
+    <li><%= booking.status %></li>
+  <%end%>
+</ul>
+
 <%= link_to 'Back', tours_path %> |
