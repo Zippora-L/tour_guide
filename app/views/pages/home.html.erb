@@ -24,23 +24,33 @@
 <h2>Most popular tours</h2>
 
 <div class="card-container">
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('pao_de_acucar.jpg') %>)">
-    Pão de açúcar
-  </div>
-
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('cristo.jpg') %>)">
-    Cristo Redentor
-  </div>
-
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('parque_lage.jpg') %>)">
-    Parque Lage
-  </div>
+<% @tours.each do |tour| %>
+  <%= link_to tour_path(tour.id), class:"card-link" do%>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('pao_de_acucar.jpg') %>)">
+      <%= tour.title %>
+    </div>
+  <% end %>
+<% end %>
 </div>
 
 <!---Choose your favorite type of tour CARDS -->
 
 <h2>Choose your favorite type of tour</h2>
 
+<div class="pair-card-container">
+  <div class="pair-card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('pao_de_acucar.jpg') %>)">
+    Hiking
+  </div>
 
+  <div class="pair-card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('cristo.jpg') %>)">
+    Diving
+  </div>
 
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <div class="pair-card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('pao_de_acucar.jpg') %>)">
+    City Tours
+  </div>
+
+  <div class="pair-card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('cristo.jpg') %>)">
+    Wellness
+  </div>
+</div>
