@@ -2,22 +2,31 @@ class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit]
 
   def index
-    @tours = Tour.all
+    # @tours = Tour.all
+    if current_user.tour_guide
+      @tours = policy_scope(Tour).where(user: current_user)
+    else
+      @tours = policy_scope(Tour)
+    end
   end
 
   def show
+    authorize @tour
   end
 
   def new
     @tour = Tour.new
+    authorize @tour
   end
 
   def edit
+    authorize @tour
   end
 
   def create
     @tour = Tour.new(tour_params)
     @tour.user = current_user
+    authorize @tour
     if @tour.save
       redirect_to tours_path
     else
