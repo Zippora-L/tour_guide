@@ -20,7 +20,7 @@ class ToursController < ApplicationController
     tour.save
     redirect_to tours_path
   end
-
+  
   private
 
   def set_tour

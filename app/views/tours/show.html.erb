@@ -11,17 +11,48 @@
 <ul>
   <li>Limit of <%= @tour.limit_of_people%> people</li>
   <li>$ <%= @tour.price%></li>
-  <li>Every day at <%= @tour.starting_time%>h</li>
-  <li>Duration of <%= @tour.duration%> hours</li>
+  <li>Every day at <%= @tour.starting_time.hour%>h</li>
+  <li>Duration of <%= @tour.duration%> hour(s)</li>
   <!--- <li><%= @tour.status%></li> --->
   <li>Meeting at <%= @tour.destination%></li>
 </ul>
 
 <h2>Bookings:</h2>
-<ul>
-  <% @tour.bookings.each do |booking| %>
-    <li><%= booking.status %></li>
-  <%end%>
-</ul>
+  <% if user_signed_in? && current_user.tour_guide? == false %>
+    <% if @tour.has_spots? %>
+        <li class="btn btn-info">
+          <%= link_to "Book this tour", tour_bookings_path(@tour), method:"POST", class: "nav-link" %>
+        </li>
+        <br>
+    <% else %>
+      <p style="color:red;"><i>Sorry, this tour is full!</i></p>
+    <% end %>
 
+    <ul>
+      <% @tour.bookings.each do |booking| %>
+        <li><u>Booking <%= booking.id %></u>: <%= booking.status %>
+          <div class="btn">
+            <%= link_to "Cancel", tour_booking_path(@tour, booking.id), method:"DELETE", class: "nav-link" %>
+          </div>
+        </li>
+      <%end%>
+    </ul>
+  <% elsif user_signed_in? && current_user.tour_guide? == true %>
+    <p>You are a tour guide</p>
+    <ul>
+      <% @tour.bookings.each do |booking| %>
+        <li><u>Booking <%= booking.id %></u>: <%= booking.user_id %><%= booking.status %>
+          <% if booking.status == "Pending confirmation" %>
+            <div class="btn">
+            <%= link_to "Confirm booking", booking_confirm_path(@tour, booking.id), method:"PATCH", class: "nav-link" %>
+          </div>
+          <%end%>
+          <div class="btn">
+            <%= link_to "Cancel", tour_booking_path(@tour, booking.id), method:"DELETE", class: "nav-link" %>
+          </div>
+        </li>
+    <%end%>
+<% else %>
+<p>You need to sign in to see your bookings</p>
+<% end %>
 <%= link_to 'Back', tours_path %> |
