@@ -1,7 +1,7 @@
 <h1>Tours#create</h1>
 <p>Find me in app/views/tours/create.html.erb</p>
 
-<%= simple_form_for [ @tour ] do |f| %>
+<%= simple_form_for(@tour) do |f| %>
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :limit_of_people %>
@@ -9,6 +9,7 @@
   <%= f.input :starting_time %>
   <%= f.input :duration %>
   <%= f.input :destination %>
+  <%= f.input :photo, as: :file %>
   <%= f.input :status %>
   <%= f.submit "Submit review", class: "btn btn-primary" %>
 <% end %>
