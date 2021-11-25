@@ -2,7 +2,12 @@ class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit]
 
   def index
-    @tours = Tour.all
+    if params[:query]
+      raise
+      @tours = Tour.search_by_title_and_description(params[:query])
+    else
+      @tours = Tour.all
+    end
   end
 
   def show
