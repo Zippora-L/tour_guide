@@ -2,8 +2,9 @@ class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit]
 
   def index
-    # @tours = Tour.all
-    if current_user.tour_guide
+    if params[:query]
+      @tours = policy_scope(Tour).search_by_title_and_description(params[:query])
+    elsif current_user.tour_guide
       @tours = policy_scope(Tour).where(user: current_user)
     else
       @tours = policy_scope(Tour)
