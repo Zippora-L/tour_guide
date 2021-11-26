@@ -20,7 +20,24 @@ class ToursController < ApplicationController
     tour.save
     redirect_to tours_path
   end
-  
+
+  def change_tour_status
+    @tour = Tour.find(params[:id])
+    if @tour.active?
+      @tour.status = false
+    else
+      @tour.status = true
+    end
+    @tour.save
+    redirect_to tour_path(@tour)
+  end
+
+  def destroy
+    @tour = Tour.find(params[:id])
+    Tour.delete(@tour.id)
+    redirect_to tours_path
+  end
+
   private
 
   def set_tour

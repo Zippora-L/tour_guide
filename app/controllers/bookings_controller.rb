@@ -28,9 +28,9 @@ class BookingsController < ApplicationController
     redirect_to tour_path(@tour)
   end
 
-  def confirm!
-    @tour = Tour.find(params[:tour_id])
-    @booking = Booking.find(params[:id])
+  def confirm
+    @tour = Tour.find(params[:id])
+    @booking = Booking.find(params[:format])
     @booking.status = "Confirmed"
     @booking.save
     redirect_to tour_path(@tour)
