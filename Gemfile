@@ -71,4 +71,3 @@ gem 'faker'
 
 gem 'jquery-rails'
 gem 'pg_search', '~> 2.3.0'
-
