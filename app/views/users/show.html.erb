@@ -30,3 +30,7 @@
 </div>
 <%end%>
 <% end %>
+
+<% if policy(Tour).create? %>
+  <%= link_to "New tour", new_tour_path %>
+<% end %>
