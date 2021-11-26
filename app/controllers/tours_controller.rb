@@ -48,6 +48,10 @@ class ToursController < ApplicationController
   end
 
   def destroy
+    set_tour
+    @tour.bookings.each do |booking|
+      Booking.delete(booking.id)
+    end
     Tour.delete(@tour.id)
     authorize @tour
     redirect_to tours_path
