@@ -48,8 +48,8 @@ class ToursController < ApplicationController
   end
 
   def destroy
-    authorize @tour
     Tour.delete(@tour.id)
+    authorize @tour
     redirect_to tours_path
   end
 
