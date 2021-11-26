@@ -1,14 +1,14 @@
 <!---SEARCH -->
-  <%= form_tag tours_path, method: :get do %>
-    <div id="search-bar" class="my-5 input-group">
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find a tour"
-      %>
-      <%= submit_tag "Search", id: "search-button" %>
-    </div>
-  <% end %>
+<%= form_tag tours_path, method: :get do %>
+  <div id="search-bar" class="my-5 input-group">
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find a tour"
+    %>
+    <%= submit_tag "Search", id: "search-button" %>
+  </div>
+<% end %>
 
 <!---BANNER -->
 
