@@ -1,10 +1,7 @@
-<%# <h1>Tours#show</h1>
-<p>Find me in app/views/tours/show.html.erb</p> %>
-<%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill %>
 <h1>
   <%= @tour.title %>
 </h1>
-
+<%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill %>
 <p>
   <%= @tour.description %>
 </p>
@@ -12,17 +9,71 @@
 <ul>
   <li>Limit of <%= @tour.limit_of_people%> people</li>
   <li>$ <%= @tour.price%></li>
-  <li>Every day at <%= @tour.starting_time%>h</li>
-  <li>Duration of <%= @tour.duration%> hours</li>
+  <li>Every day at <%= @tour.starting_time.hour%>h</li>
+  <li>Duration of <%= @tour.duration%> hour(s)</li>
   <!--- <li><%= @tour.status%></li> --->
   <li>Meeting at <%= @tour.destination%></li>
 </ul>
 
 <h2>Bookings:</h2>
-<ul>
-  <% @tour.bookings.each do |booking| %>
-    <li><%= booking.status %></li>
-  <%end%>
-</ul>
+  <% if user_signed_in? && current_user.tour_guide? == false %>
+    <% if @tour.active? == false %>
+      <p><i>This tour is currently not taking any new bookings.</i></p>
+    <% elsif @tour.has_spots? %>
+        <li class="btn btn-info">
+          <%= link_to "Book this tour", tour_bookings_path(@tour), method:"POST", class: "nav-link" %>
+        </li>
+        <br>
+    <% else %>
+      <p style="color:red;"><i>Sorry, this tour is full!</i></p>
+    <% end %>
 
+    <ul>
+      <% @tour.bookings.each do |booking| %>
+        <li><u>Booking <%= booking.id %></u>: <%= booking.status %>
+          <div class="btn">
+            <%= link_to "Cancel", tour_booking_path(@tour, booking.id), method:"DELETE", class: "nav-link" %>
+          </div>
+        </li>
+      <%end%>
+    </ul>
+  <% elsif user_signed_in? && current_user.tour_guide? == true %>
+    <% if @tour.has_bookings? == false %>
+      <p>No bookings yet!</p>
+    <% elsif @tour.has_spots? %>
+      <p>You have the following bookings for this tour:</p>
+    <% else %>
+      <p>Congrats <%= current_user.first_name %>! Your tour is <b>sold out</b>! You have the following bookings for this tour:</p>
+    <% end %>
+    <ul>
+      <% @tour.bookings.each do |booking| %>
+        <li><u>Booking <%= booking.id %></u>: <%= User.find(booking.user_id).first_name %> <%= User.find(booking.user_id).last_name %> - <%= booking.status %>
+          <% if booking.status == "Pending confirmation" %>
+            <div class="btn">
+            <%= link_to "Confirm booking", booking_confirm_path(@tour, booking.id), method:"PATCH", class: "nav-link" %>
+          </div>
+          <%end%>
+          <div class="btn">
+            <%= link_to "Cancel", tour_booking_path(@tour, booking.id), method:"DELETE", class: "nav-link" %>
+          </div>
+        </li>
+    <%end%>
+            <button class="btn btn-<%=@tour.colour%>" onclick="toggle(this)"><%=link_to "#{ @tour.status ? 'Deactivate this tour!' : 'Activate this tour!' }", tour_status_path(@tour), method:"PATCH", class: "nav-link"  %></button>
+              <script>
+              function toggle(e) {
+                let txt = e.innerText;
+                e.innerText = txt == 'Deactivate this tour' ? 'Activate this tour' : 'Deactivate this tour';
+              }
+              </script>
+
+          <li class="btn btn-danger" >
+            <%=link_to "Cancel this tour", tour_destroy_path(@tour), method:"DELETE", data: { confirm: 'Are you sure you want to cancel this tour? This will permanently delete all existing bookings.' }, class: "nav-link"  %>
+          </li>
+        <br>
+        <br>
+<% else %>
+  <p>You need to sign in to see your bookings</p>
+<% end %>
 <%= link_to 'Back', tours_path %> |
+
+<script src="../lib/toggle.js"></script>

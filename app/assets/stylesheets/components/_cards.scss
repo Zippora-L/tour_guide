@@ -2,8 +2,8 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  // width: 200px;
-  // height: 200px;
+  // width: 250px;
+  // height: 300px;
 }
 
 .card-trip > img {
@@ -38,4 +38,67 @@
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+.tours-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  // column-gap: 0.5rem;
+
+}
+
+.tour-card {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.tour-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.tour-title {
+  color: black;
+  font-size: 1.75rem;
+  font-weight: 500;
+  min-height: 7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tour-description {
+  color: darkgray;
+  font-size: 1rem;
+  max-height: 7.5rem;
+  overflow: hidden;
+}
+
+.tour-price {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 700;
+  justify-self: flex-end;
+}
+
+.btn-tour-show {
+  background-color: #FF003D;
+  color: white;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  border-radius: 2rem;
+  text-decoration: none;
+}
+
+.btn-tour-show:hover {
+  color: black;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
 }

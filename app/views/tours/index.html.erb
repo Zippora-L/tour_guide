@@ -1,20 +1,16 @@
-<%# <h1>Tours#index</h1>
-<p>Find me in app/views/tours/index.html.erb</p> %>
-<h1>Tours index</h1>
-<% @tours.each do |tour|%>
-
-
-  <div class="card-trip">
-  <%= cl_image_tag tour.photo.key, height: 300, width: 400, crop: :fill %>
-  <div class="card-trip-infos">
-    <div>
-      <h2><%= link_to tour.title, tour_path(tour) %></h2>
-      <p><%= tour.description %></p>
+<h1 class="my-5">Find your next tour</h1>
+<div class="cards">
+  <% @tours.each do |tour|%>
+    <div class="tour-card p-3">
+      <%= cl_image_tag tour.photo.key, height: 300, width: 400, crop: :fill, class: "mb-3"%>
+      <div>
+        <h2 class="tour-title"><%= tour.title %></h2>
+        <p class="tour-description"><%= tour.description %></p>
+      </div>
+      <div class="card-bottom mt-5">
+        <%= link_to "More info", tour_path(tour), class: "btn-tour-show" %>
+        <h3 class="tour-price">$ <%= tour.price %></h3>
+      </div>
     </div>
-    <h2 class="card-trip-pricing">$ <%= tour.price %></h2>
-    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-  </div>
+  <% end %>
 </div>
-<br>
-
-<% end %>
