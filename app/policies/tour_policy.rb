@@ -9,6 +9,10 @@ class TourPolicy < ApplicationPolicy
     user.tour_guide
   end
 
+  def destroy?
+    user.tour_guide
+  end
+
   def show?
     true
   end

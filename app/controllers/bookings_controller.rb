@@ -18,8 +18,8 @@ class BookingsController < ApplicationController
 
   def destroy
     @tour = Tour.find(params[:tour_id])
-    authorize @booking
     @booking = Booking.find(params[:id])
+    authorize @booking
     Booking.delete(@booking.id)
     redirect_to tour_path(@tour)
   end
