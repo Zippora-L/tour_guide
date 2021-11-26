@@ -12,6 +12,7 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-decoration: none;
 }
 
 .card-container {
@@ -84,5 +85,32 @@
   .card-link {
     text-decoration: none;
     margin: 0;
+    color: white;
   }
+
+  .card-link:hover {
+    color: white;
+  }
+}
+
+.flash {
+  padding: 6px 24px;
+  display: flex;
+  text-align: center;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  margin: 8px;
+}
+
+.flash-success {
+  border: 2px solid #1EDD88;
+}
+
+.flash-warning {
+  border: 2px solid #FFC65A;
+}
+
+.flash-danger {
+  border: 2px solid #FD1015;
 }
