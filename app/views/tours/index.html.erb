@@ -1,9 +1,8 @@
 <%# <h1>Tours#index</h1>
 <p>Find me in app/views/tours/index.html.erb</p> %>
-<h1>Tours</h1>
+<h1>Find your next tour</h1>
+
 <% @tours.each do |tour|%>
-
-
   <div class="card-trip">
   <%= cl_image_tag tour.photo.key, height: 300, width: 400, crop: :fill %>
   <div class="card-trip-infos">
