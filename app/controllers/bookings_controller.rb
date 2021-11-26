@@ -6,15 +6,13 @@ class BookingsController < ApplicationController
 
   def create
     @tour = Tour.find(params[:tour_id])
-    authorize @booking
-
     Booking.where(tour: @tour)
-
-    booking = Booking.new
-    booking.user = current_user
-    booking.tour = @tour
-    booking.status = "Pending confirmation"
-    booking.save
+    @booking = Booking.new
+    authorize @booking
+    @booking.user = current_user
+    @booking.tour = @tour
+    @booking.status = "Pending confirmation"
+    @booking.save
     redirect_to tour_path(@tour)
   end
 

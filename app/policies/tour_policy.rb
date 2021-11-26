@@ -13,7 +13,7 @@ class TourPolicy < ApplicationPolicy
     true
   end
 
-  def change_tour_status
+  def change_tour_status?
     user.tour_guide
   end
 end
