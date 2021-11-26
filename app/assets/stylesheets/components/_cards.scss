@@ -57,3 +57,48 @@
 .tour-card:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
+
+.tour-title {
+  color: black;
+  font-size: 1.75rem;
+  font-weight: 500;
+  min-height: 7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tour-description {
+  color: darkgray;
+  font-size: 1rem;
+  max-height: 7.5rem;
+  overflow: hidden;
+}
+
+.tour-price {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 700;
+  justify-self: flex-end;
+}
+
+.btn-tour-show {
+  background-color: #FF003D;
+  color: white;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  border-radius: 2rem;
+  text-decoration: none;
+}
+
+.btn-tour-show:hover {
+  color: black;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
