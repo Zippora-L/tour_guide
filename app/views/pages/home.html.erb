@@ -1,14 +1,13 @@
 <!---SEARCH -->
-
 <%= form_tag tours_path, method: :get do %>
-
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find a movie"
-  %>
-  <%= submit_tag "Search", class: "btn btn-secondary" %>
-
+  <div id="search-bar" class="my-5 input-group">
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find a tour"
+    %>
+    <%= submit_tag "Search", id: "search-button" %>
+  </div>
 <% end %>
 
 <!---BANNER -->
@@ -17,13 +16,13 @@
   <div class="container">
     <h1>Redefine your adventure</h1>
     <p>let yourself be guided through your adventures by <strong>locals</strong> all over the world!</p>
-    <a class="btn btn-flat" href="#">Apply now</a>
+    <%= link_to "Apply now", new_user_session_path, id: "cta" %>
   </div>
 </div>
 
 <!---Most popular tours CARDS -->
 
-<h2>Most popular tours</h2>
+<h2 class="my-4">Most popular tours</h2>
 
 <div class="card-container">
 <% @tours.each do |tour| %>
@@ -37,27 +36,27 @@
 
 <!---Choose your favorite type of tour CARDS -->
 
-<h2>Choose your favorite type of tour</h2>
+<h2 class="my-4">Choose your favorite type of tour</h2>
 
 <div class="card-container">
-  <%= link_to tours_path(:query => "hiking"), class:"card-link" do%>
   <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('pao_de_acucar.jpg') %>)">
-    Hiking
+    <%= link_to tours_path(:query => "hiking"), class:"card-link" do%>
+      Hiking
     <%end%>
   </div>
-  <%= link_to tours_path(:query => "diving"), class:"card-link" do%>
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('cristo.jpg') %>)">
-    Diving
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('diving.jpg') %>)">
+    <%= link_to tours_path(:query => "diving"), class:"card-link" do%>
+      Diving
     <%end%>
   </div>
-  <%= link_to tours_path(:query => "city"), class:"card-link" do%>
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('pao_de_acucar.jpg') %>)">
-    City Tours
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('citytour.jpg') %>)">
+    <%= link_to tours_path(:query => "city"), class:"card-link" do%>
+      City Tours
     <%end%>
   </div>
-  <%= link_to tours_path(:query => "wellness"), class:"card-link" do%>
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('cristo.jpg') %>)">
-    Wellness
+  <!---<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('cristo.jpg') %>)">
+    <%= link_to tours_path(:query => "wellness"), class:"card-link" do%>
+      Wellness
     <%end%>
-  </div>
+  </div>--->
 </div>
