@@ -2,6 +2,7 @@ class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :destroy, :change_tour_status]
 
   def index
+    @query = params[:query]
     if params[:query]
       @tours = policy_scope(Tour).search_by_title_and_description(params[:query])
     elsif current_user.tour_guide

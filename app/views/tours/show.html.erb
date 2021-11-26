@@ -1,19 +1,27 @@
-<h1>
-  <%= @tour.title %>
-</h1>
-<%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill %>
-<p>
-  <%= @tour.description %>
-</p>
+<div class="container">
+  <div class="card mb-4">
+    <div class="row no-gutters">
+      <div class="col-md-8 tour-img">
+        <%= cl_image_tag @tour.photo.key, height: 300, width: 400, crop: :fill %>
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= @tour.title %></h5>
+          <h5 class="card-text"><%= @tour.description %></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Limit of <%= @tour.limit_of_people%> people</li>
+          <li class="list-group-item">$ <%= @tour.price%></li>
+          <li class="list-group-item">Every day at <%= @tour.starting_time.hour%>h</li>
+          <li class="list-group-item">Duration of <%= @tour.duration%> hour(s)</li>
+          <li class="list-group-item">Meeting at <%= @tour.destination%></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-<ul>
-  <li>Limit of <%= @tour.limit_of_people%> people</li>
-  <li>$ <%= @tour.price%></li>
-  <li>Every day at <%= @tour.starting_time.hour%>h</li>
-  <li>Duration of <%= @tour.duration%> hour(s)</li>
-  <!--- <li><%= @tour.status%></li> --->
-  <li>Meeting at <%= @tour.destination%></li>
-</ul>
+
 
 <h2>Bookings:</h2>
   <% if user_signed_in? && current_user.tour_guide? == false %>

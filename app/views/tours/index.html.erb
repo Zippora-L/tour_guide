@@ -1,11 +1,16 @@
-<h1>Find your next tour</h1>
+<h1 class="my-5">Find your next tour</h1>
 <div class="cards">
   <% @tours.each do |tour|%>
     <div class="tour-card p-3">
-      <%= cl_image_tag tour.photo.key, height: 300, width: 400, crop: :fill %>
-      <h2><%= link_to tour.title, tour_path(tour) %></h2>
-        <p><%= tour.description %></p>
-      <h2 class="card-trip-pricing">$ <%= tour.price %></h2>
+      <%= cl_image_tag tour.photo.key, height: 300, width: 400, crop: :fill, class: "mb-3"%>
+      <div>
+        <h2 class="tour-title"><%= tour.title %></h2>
+        <p class="tour-description"><%= tour.description %></p>
+      </div>
+      <div class="card-bottom mt-5">
+        <%= link_to "More info", tour_path(tour), class: "btn-tour-show" %>
+        <h3 class="tour-price">$ <%= tour.price %></h3>
+      </div>
     </div>
   <% end %>
 </div>
