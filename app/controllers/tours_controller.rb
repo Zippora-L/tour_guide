@@ -1,5 +1,5 @@
 class ToursController < ApplicationController
-  before_action :set_tour, only: [:show, :edit]
+  before_action :set_tour, only: [:show, :edit, :destroy, :change_tour_status]
 
   def index
     if params[:query]
@@ -36,7 +36,7 @@ class ToursController < ApplicationController
   end
 
   def change_tour_status
-    @tour = Tour.find(params[:id])
+    authorize @tour
     if @tour.active?
       @tour.status = false
     else
@@ -47,7 +47,7 @@ class ToursController < ApplicationController
   end
 
   def destroy
-    @tour = Tour.find(params[:id])
+    authorize @tour
     Tour.delete(@tour.id)
     redirect_to tours_path
   end

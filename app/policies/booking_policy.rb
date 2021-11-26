@@ -1,4 +1,4 @@
-class TourPolicy < ApplicationPolicy
+class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -6,14 +6,14 @@ class TourPolicy < ApplicationPolicy
   end
 
   def create?
-    user.tour_guide
-  end
-
-  def show?
     true
   end
 
-  def change_tour_status
+  def destroy?
+    true
+  end
+
+  def confirm?
     user.tour_guide
   end
 end

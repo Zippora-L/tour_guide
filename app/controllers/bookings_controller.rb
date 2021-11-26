@@ -1,17 +1,14 @@
 class BookingsController < ApplicationController
-
-  def index_user
-    @userbookings = current_user.bookings
-  end
-
   def index
     @allbookings = Booking.all
+    @allbookings = policy_scope(Booking).where(user: current_user)
   end
 
   def create
     @tour = Tour.find(params[:tour_id])
+    authorize @booking
 
-    Booking.where(tour:@tour)
+    Booking.where(tour: @tour)
 
     booking = Booking.new
     booking.user = current_user
@@ -23,6 +20,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @tour = Tour.find(params[:tour_id])
+    authorize @booking
     @booking = Booking.find(params[:id])
     Booking.delete(@booking.id)
     redirect_to tour_path(@tour)
@@ -30,6 +28,7 @@ class BookingsController < ApplicationController
 
   def confirm
     @tour = Tour.find(params[:id])
+    authorize @booking
     @booking = Booking.find(params[:format])
     @booking.status = "Confirmed"
     @booking.save
