@@ -38,14 +38,16 @@
 
     <ul style="list-style: none;" id="bookings-list">
       <% @tour.bookings.each do |booking| %>
-        <% if booking.status == "Confirmed" %>
-        <li><div class="flash flash-success fade show">
-        <% else %>
-        <li><div class="flash flash-danger fade show">
-        <% end %>
-        <u>Booking <%= booking.id %></u>: <%= booking.status %>
-            <%= link_to "Cancel", tour_booking_path(@tour, booking.id, anchor: "bookings-list"), method:"DELETE", class: "booking-link" %>
-        </div></li>
+        <% if booking.user_id == current_user.id %>
+          <% if booking.status == "Confirmed" %>
+            <li><div class="flash flash-success fade show">
+          <% else %>
+            <li><div class="flash flash-danger fade show">
+          <% end %>
+          <u>Booking <%= booking.id %></u>: <%= booking.status %>
+              <%= link_to "Cancel", tour_booking_path(@tour, booking.id, anchor: "bookings-list"), method:"DELETE", class: "booking-link" %>
+          </div></li>
+        <%end%>
       <%end%>
     </ul>
   <% elsif user_signed_in? && current_user.tour_guide? == true %>
